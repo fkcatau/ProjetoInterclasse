@@ -19,16 +19,20 @@
             <div class="linha-campos">
                 <div class="campo">
                     <label for="nome">Nome do Time *</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" name="nome">
                 </div>
-                <div class="campo campo-cor">
-                    <label for="cor">Cor</label>
-                    <input type="text" id="cor" name="cor" placeholder="Ex: Azul">
+                <div class = "campo">
+                    <label for="turma">Turma</label>
+                    <input type="text" id="turma" name="turma" placeholder="Ex: 2° EM">
                 </div>
-            </div>
+                </div>
+            <div class="campo">
+                    <label for="responsavel">Responsável</label>
+                    <input type="text" id="responsavel" name="responsavel">
+                </div>
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
-                <a href="{{ url_for('listar_times') }}" class="botao botao-secundario">Cancelar</a>
+                <a href="{{ url_for('listar_times')}}" class="botao botao-secundario">Cancelar</a>
             </div>
         </form>
     </section>
@@ -38,7 +42,24 @@
         <h2>Lista de Times</h2>
         {% if times %}
         <table>
-<!--           Insira sua tabela aqui -->
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nome</th>
+                    <th>turma</th>
+                    <th>responsável</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for time in times %}
+                <tr>
+                    <td>{{time.id}}</td>
+                    <td>{{time.nome}}</td>
+                    <td>{{time.turma}}</td>
+                    <td>{{time.responsavel}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
         {% else %}
             <p class="vazio">Nenhum time cadastrado ainda.</p>

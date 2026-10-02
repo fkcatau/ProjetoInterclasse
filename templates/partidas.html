@@ -56,7 +56,7 @@
             </div>
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
-                <a href="{{ url_for('listar_partidas') }}" class="botao botao-secundario">Cancelar</a>
+                <a href="{{ url_for('listar_partidas')}}" class="botao botao-secundario">Cancelar</a>
             </div>
         </form>
         {% endif %}
@@ -67,7 +67,26 @@
         <h2>Lista de Partidas</h2>
         {% if partidas %}
         <table>
-<!--            Insira sua tabela aqui  -->
+        <thead>
+                <tr>
+                    <th>Time da Casa</th>
+                    <th>Time Visitante</th>
+                    <th>Gols da Casa</th>
+                    <th>Gols do Visitante</th>
+                    <th>Data da Partida</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for partida in partidas %}
+                <tr>
+                    <td>{{partida.id}}</td>
+                    <td>{{partida.time_casa_id}}</td>
+                    <td>{{partida.time_visitante_id}}</td>
+                    <td>{{partida.gols_casa}}</td>
+                    <td>{{partida.gols_visitante}}</td>
+                    <td>{{partida.data_partida}}</td>
+                </tr>
+            {% endfor %}
         </table>
         {% else %}
             <p class="vazio">Nenhuma partida cadastrada ainda.</p>
