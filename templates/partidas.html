@@ -9,7 +9,6 @@
         </div>
 
         <a href="{{ url_for('nova_partida') }}" class="botao">+ Nova Partida</a>
-
     </div>
 
     {% if request.endpoint == 'nova_partida' %}
@@ -25,12 +24,19 @@
                     <label for="time_casa_id">Time da Casa *</label>
                     <select id="time_casa_id" name="time_casa_id" required>
                         <option value="">Selecione</option>
+                        {% for time in times %}
+                            <option value="{{ time.id }}">{{ time.nome }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="campo">
                     <label for="time_visitante_id">Time Visitante *</label>
                     <select id="time_visitante_id" name="time_visitante_id" required>
                         <option value="">Selecione</option>
+                        {# CORRIGIDO: Adicionado o loop para listar os times cadastrados #}
+                        {% for time in times %}
+                            <option value="{{ time.id }}">{{ time.nome }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
@@ -56,7 +62,7 @@
             </div>
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
-                <a href="{{ url_for('listar_partidas')}}" class="botao botao-secundario">Cancelar</a>
+                <a href="{{ url_for('listar_partidas') }}" class="botao botao-secundario">Cancelar</a>
             </div>
         </form>
         {% endif %}
@@ -67,26 +73,30 @@
         <h2>Lista de Partidas</h2>
         {% if partidas %}
         <table>
-        <thead>
+            <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Time da Casa</th>
                     <th>Time Visitante</th>
-                    <th>Gols da Casa</th>
-                    <th>Gols do Visitante</th>
-                    <th>Data da Partida</th>
+                    <th>Gols Casa</th>
+                    <th>Gols Visitante</th>
+                    <th>Data</th>
+                    <th>Local</th>
                 </tr>
             </thead>
             <tbody>
             {% for partida in partidas %}
                 <tr>
-                    <td>{{partida.id}}</td>
-                    <td>{{partida.time_casa_id}}</td>
-                    <td>{{partida.time_visitante_id}}</td>
-                    <td>{{partida.gols_casa}}</td>
-                    <td>{{partida.gols_visitante}}</td>
-                    <td>{{partida.data_partida}}</td>
+                    <td>{{ partida.id }}</td>
+                    <td>{{ partida.time_casa_id }}</td>
+                    <td>{{ partida.time_visitante_id }}</td>
+                    <td>{{ partida.gols_casa }}</td>
+                    <td>{{ partida.gols_visitante }}</td>
+                    <td>{{ partida.data_partida }}</td>
+                    <td>{{ partida.local }}</td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
         {% else %}
             <p class="vazio">Nenhuma partida cadastrada ainda.</p>

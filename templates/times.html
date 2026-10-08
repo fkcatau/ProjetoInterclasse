@@ -19,20 +19,22 @@
             <div class="linha-campos">
                 <div class="campo">
                     <label for="nome">Nome do Time *</label>
-                    <input type="text" id="nome" name="nome">
+                    <input type="text" id="nome" name="nome" required>
                 </div>
-                <div class = "campo">
-                    <label for="turma">Turma</label>
-                    <input type="text" id="turma" name="turma" placeholder="Ex: 2° EM">
+                <div class="campo">
+                    <label for="turma">Turma *</label>
+                    <input type="text" id="turma" name="turma" placeholder="Ex: 2° EM" required>
                 </div>
+            {# CORRIGIDO: Removido o fechamento extra de </div> que estava aqui #}
+                <div class="campo">
+                    <label for="responsavel">Responsável *</label>
+                    <input type="text" id="responsavel" name="responsavel" required>
                 </div>
-            <div class="campo">
-                    <label for="responsavel">Responsável</label>
-                    <input type="text" id="responsavel" name="responsavel">
-                </div>
+            </div> {# CORRIGIDO: Fechamento correto da div .linha-campos englobando todos os inputs de lado a lado #}
+
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
-                <a href="{{ url_for('listar_times')}}" class="botao botao-secundario">Cancelar</a>
+                <a href="{{ url_for('listar_times') }}" class="botao botao-secundario">Cancelar</a>
             </div>
         </form>
     </section>
@@ -44,19 +46,19 @@
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>nome</th>
-                    <th>turma</th>
-                    <th>responsável</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Responsável</th>
                 </tr>
             </thead>
             <tbody>
             {% for time in times %}
                 <tr>
-                    <td>{{time.id}}</td>
-                    <td>{{time.nome}}</td>
-                    <td>{{time.turma}}</td>
-                    <td>{{time.responsavel}}</td>
+                    <td>{{ time.id }}</td>
+                    <td>{{ time.nome }}</td>
+                    <td>{{ time.turma }}</td>
+                    <td>{{ time.responsavel }}</td>
                 </tr>
             {% endfor %}
             </tbody>

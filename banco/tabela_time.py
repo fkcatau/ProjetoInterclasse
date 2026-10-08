@@ -1,5 +1,5 @@
 from flask import flash
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.exc import SQLAlchemyError
 
 from database import Time, db_session
@@ -12,6 +12,13 @@ def select_todos():
     times = db_session.execute(times_sql).scalars().all()
 
     return times
+
+def select_qauntidade_total():
+    times_sql = select(func.count(Time.id))
+    qtd_total = db_session.execute(times_sql).scalar()
+    return qtd_total
+print(select_qauntidade_total())
+
 
 def salvar(nome, turma, responsavel):
     try:
