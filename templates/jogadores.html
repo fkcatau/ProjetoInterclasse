@@ -14,7 +14,7 @@
 
     {% if request.endpoint == 'novo_jogador' %}
     <section class="painel formulario">
-        <h2>Novo Jogador</h2>
+        <h2>Nova Padaria</h2>
         <form method="POST" action="{{ url_for('novo_jogador') }}">
             <div class="campo">
                 <label for="nome">Nome *</label>
@@ -40,10 +40,9 @@
             </div>
 
             <div class="campo">
-                <label for="time_id">Time</label>
-                <select id="time_id" name="time_id">
-                    <option value="">Sem time</option>
-                    {# CORRIGIDO: Alterado de 'times in times' para 'time in times' #}
+                <label for="time_id">Time *</label>
+                <select id="time_id" name="time_id" required>
+                    <option value="">Selecione um time</option>
                     {% for time in times %}
                         <option value="{{ time.id }}">{{ time.nome }}</option>
                     {% endfor %}
@@ -78,7 +77,7 @@
                     <td>{{ jogador.nome }}</td>
                     <td>{{ jogador.numero_camisa }}</td>
                     <td>{{ jogador.posicao.capitalize() }}</td>
-                    <td>{{ jogador.time_id if jogador.time_id else "Sem time" }}</td>
+                    <td>{{ jogador.time.nome if jogador.time else "Sem time" }}</td>
                 </tr>
             {% endfor %}
             </tbody>

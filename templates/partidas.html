@@ -33,7 +33,6 @@
                     <label for="time_visitante_id">Time Visitante *</label>
                     <select id="time_visitante_id" name="time_visitante_id" required>
                         <option value="">Selecione</option>
-                        {# CORRIGIDO: Adicionado o loop para listar os times cadastrados #}
                         {% for time in times %}
                             <option value="{{ time.id }}">{{ time.nome }}</option>
                         {% endfor %}
@@ -53,11 +52,11 @@
             <div class="linha-campos">
                 <div class="campo">
                     <label for="data_partida">Data</label>
-                    <input type="date" id="data_partida" name="data_partida">
+                    <input type="date" id="data_partida" name="data_partida" required>
                 </div>
                 <div class="campo">
                     <label for="local">Local</label>
-                    <input type="text" id="local" name="local" placeholder="Ex: Quadra 1">
+                    <input type="text" id="local" name="local" placeholder="Ex: Quadra 1" required>
                 </div>
             </div>
             <div class="acoes-form">
@@ -88,8 +87,8 @@
             {% for partida in partidas %}
                 <tr>
                     <td>{{ partida.id }}</td>
-                    <td>{{ partida.time_casa_id }}</td>
-                    <td>{{ partida.time_visitante_id }}</td>
+                    <td>{{ partida.time_casa.nome }}</td>
+                    <td>{{ partida.time_visitante.nome }}</td>
                     <td>{{ partida.gols_casa }}</td>
                     <td>{{ partida.gols_visitante }}</td>
                     <td>{{ partida.data_partida }}</td>
