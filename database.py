@@ -17,6 +17,7 @@ class Time(Base):
     responsavel = Column(String(100))
 
 
+
 class Jogador(Base):
     __tablename__ = "jogadores"
 
